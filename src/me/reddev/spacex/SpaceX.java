@@ -34,9 +34,14 @@ public class SpaceX extends JavaPlugin {
         return false;
     }
 
+    /**
+     * Called on player move event.  Avoid major calculations here.  Only do things if they are through an if.
+     * @param m player event
+     */
     public void onMove(PlayerMoveEvent m){
-        if((int)m.getPlayer().getLocation().getBlockY()==250){
-            m.getPlayer().sendMessage("Yee");
+        // Detects player height and will later move them to space world.
+        if(m.getPlayer().getLocation().getBlockY()>=250){
+            m.getPlayer().sendMessage("You are above or at 250 blocks!");
         }
     }
 
