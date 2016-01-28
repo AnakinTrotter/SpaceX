@@ -17,5 +17,4 @@ public class Craft {
      */
     private int x1, y1, z1;
 
-
 }
