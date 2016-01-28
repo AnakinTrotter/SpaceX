@@ -2,6 +2,7 @@ package me.reddev.spacex;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.onarandombox.MultiverseCore.*;
 
@@ -31,6 +32,12 @@ public class SpaceX extends JavaPlugin {
             return true;
         }
         return false;
+    }
+
+    public void onMove(PlayerMoveEvent m){
+        if((int)m.getPlayer().getLocation().getBlockY()==250){
+            m.getPlayer().sendMessage("Yee");
+        }
     }
 
 }
