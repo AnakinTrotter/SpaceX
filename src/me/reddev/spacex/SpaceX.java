@@ -68,6 +68,11 @@ public class SpaceX extends JavaPlugin implements Listener {
         if (label.equals("spacex")) {
             String version = this.getDescription().getVersion();
             sender.sendMessage("Running SpaceX Version " + version);
+            if (args.length > 0) {
+                if (args[0].equalsIgnoreCase("create-world")) {
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mv create space end");
+                }
+            }
             return true;
         }
         return false;
