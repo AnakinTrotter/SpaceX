@@ -10,17 +10,21 @@ import org.bukkit.inventory.meta.ItemMeta;
  */
 public class Suit {
     private Player player;
+    private ItemStack helm;
 
     public Suit(Player _player) {
         player = _player;
+        helm.setType(Material.IRON_HELMET);
     }
 
     public boolean isWearing() {
-        if(player.getInventory().getHelmet().getType().equals(Material.IRON_HELMET)) {
-            player.sendMessage("hi");
+        if(player.getInventory().getHelmet().getType().equals(helm)) {
+            player.sendMessage("Oxygen Setup Valid!");
+
             return true;
         } else {
             player.sendMessage("bye");
+            player.setHealth(0.0);
             return false;
         }
     }

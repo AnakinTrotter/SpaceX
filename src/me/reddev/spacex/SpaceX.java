@@ -14,7 +14,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerLevelChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.onarandombox.MultiverseCore.*;
@@ -102,6 +104,9 @@ public class SpaceX extends JavaPlugin implements Listener {
      * priority is normal because it also works if they are above 250 blocks.
      * @param m player event
      */
+    //@EventHandler(priority=EventPriority.LOW)
+
+
     @EventHandler(priority=EventPriority.NORMAL)
     public void onPlayerMove(PlayerMoveEvent m) {
         // Detects player height and will later move them to space world.
@@ -110,6 +115,14 @@ public class SpaceX extends JavaPlugin implements Listener {
             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mv tp " + m.getPlayer().getDisplayName() + " space");
             m.getPlayer().sendMessage("You are above 250 blocks and are now going to outerspace...");
         }
+
+        if(m.getPlayer().getLocation().getY()<=5&&m.getPlayer().getWorld().equals("space")) {
+
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mv tp " + m.getPlayer().getDisplayName() + " merica");
+            m.getPlayer().sendMessage("You are falling back down to earth!!!");
+        }
     }
+
+
 
 }
