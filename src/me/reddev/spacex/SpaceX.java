@@ -5,6 +5,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.command.ColouredConsoleSender;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.onarandombox.MultiverseCore.*;
 
+import java.util.ArrayList;
+
 
 /**
  * The main delegate of the plugin.  Extends JavaPlugin.
@@ -22,6 +25,14 @@ import com.onarandombox.MultiverseCore.*;
  * @author Anakin Trotter
  */
 public class SpaceX extends JavaPlugin {
+
+    /**
+     * This is the item that is right clicked on the sign to start the spacecraft
+     * Default value is stick
+     */
+    private Material keyItem = Material.STICK;
+
+    private ArrayList<Craft> crafts = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -46,17 +57,22 @@ public class SpaceX extends JavaPlugin {
     @EventHandler(priority=EventPriority.HIGH)
     public void onPlayerInteract(PlayerInteractEvent event){
         Player p = event.getPlayer();
-        if(p.getItemInHand().getType() == Material.STICK){
+        if(p.getItemInHand().getType() == keyItem){
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 Block block = event.getClickedBlock();
                 if (block.getType() == Material.SIGN) {
                     Sign sign = (Sign) block;
                     if (sign.getLine(0).equalsIgnoreCase("spaceship")) {
-                        p.sendMessage("this will pilot spaceship");
+
+                        getServer().broadcastMessage(p.getDisplayName() + " has launched a spacecraft!");
                     }
                 }
             }
         }
+    }
+
+    public void createCraft(Block sign) {
+        //todo this is a stub
     }
 
 
@@ -65,10 +81,10 @@ public class SpaceX extends JavaPlugin {
      * priority is normal because it also works if they are above 250 blocks.
      * @param m player event
      */
-    @EventHandler(priority= EventPriority.NORMAL)
+    @EventHandler(priority=EventPriority.NORMAL)
     public void onMove(PlayerMoveEvent m){
         // Detects player height and will later move them to space world.
-        if(m.getPlayer().getLocation().getBlockY()>=250){
+        if(m.getPlayer().getLocation().getY()>=250.0d) {
             m.getPlayer().sendMessage("You are above or at 250 blocks!");
         }
     }

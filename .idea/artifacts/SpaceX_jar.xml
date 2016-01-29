@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/SpaceX_jar</output-path>
     <root id="archive" name="SpaceX.jar">
       <element id="module-output" name="SpaceX" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
     </root>
   </artifact>
 </component>
