@@ -1,5 +1,6 @@
 package me.reddev.spacex;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -33,6 +34,8 @@ public class SpaceX extends JavaPlugin implements Listener {
      * This is the item that is right clicked on the sign to start the spacecraft
      * Default value is stick
      */
+
+
     private Material keyItem = Material.STICK;
 
     private ArrayList<Craft> crafts = new ArrayList<>();
@@ -98,7 +101,8 @@ public class SpaceX extends JavaPlugin implements Listener {
     public void onPlayerMove(PlayerMoveEvent m) {
         // Detects player height and will later move them to space world.
         if(m.getPlayer().getLocation().getBlockY()>=250) {
-            m.getPlayer().sendMessage("You are above 250 blocks");
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mv tp space");
+            m.getPlayer().sendMessage("You are above 250 blocks and are now going to outerspace...");
         }
     }
 
