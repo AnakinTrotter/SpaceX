@@ -1,3 +1,9 @@
 # SpaceX plugin
 
-s
+
+      AAAA
+    A ABBAA
+    ABASBAA
+     ABBAA
+     AAA
+

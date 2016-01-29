@@ -1,5 +1,6 @@
 package me.reddev.spacex;
 
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -26,5 +27,7 @@ public class Craft {
     private int x1, y1, z1;
 
 
-
+    public Craft(Block sign, Player player) {
+        boolean isDone;
+    }
 }

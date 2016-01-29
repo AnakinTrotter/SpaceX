@@ -18,6 +18,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.onarandombox.MultiverseCore.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -26,7 +27,7 @@ import java.util.ArrayList;
  * @author Zachary Mayhew
  * @author Anakin Trotter
  */
-public class SpaceX extends JavaPlugin implements Listener{
+public class SpaceX extends JavaPlugin implements Listener {
 
     /**
      * This is the item that is right clicked on the sign to start the spacecraft
@@ -37,8 +38,17 @@ public class SpaceX extends JavaPlugin implements Listener{
     private ArrayList<Craft> crafts = new ArrayList<>();
 
     public static final Material[] whitelistedBlocks = {
-
+        Material.IRON_BLOCK, Material.IRON_DOOR_BLOCK
     };
+
+    public static boolean isWhitelisted(Material material) {
+        for (Material m : whitelistedBlocks) {
+            if (m.equals(material)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public void onEnable() {
@@ -69,17 +79,13 @@ public class SpaceX extends JavaPlugin implements Listener{
                 if (block.getType() == Material.SIGN) {
                     Sign sign = (Sign) block;
                     if (sign.getLine(0).equalsIgnoreCase("spaceship")) {
-                        Craft craft = createCraft(block, p);
+                        Craft craft = new Craft(block, p);
+                        crafts.add(craft);
                         getServer().broadcastMessage(p.getDisplayName() + " has launched a spacecraft!");
                     }
                 }
             }
         }
-    }
-
-    public Craft createCraft(Block sign, Player player) {
-        boolean isComplete;
-        return null;
     }
 
 
