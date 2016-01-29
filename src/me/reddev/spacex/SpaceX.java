@@ -79,7 +79,6 @@ public class SpaceX extends JavaPlugin implements Listener{
 
     public Craft createCraft(Block sign, Player player) {
         boolean isComplete;
-        while
         return null;
     }
 
@@ -92,8 +91,8 @@ public class SpaceX extends JavaPlugin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void onPlayerMove(PlayerMoveEvent m) {
         // Detects player height and will later move them to space world.
-        if(m.getPlayer().getLocation().getY()>=250.0d) {
-            m.getPlayer().sendMessage("You are above or at 250 blocks!");
+        if(m.getPlayer().getLocation().getBlockY()>=250) {
+            m.getPlayer().sendMessage("You are above 250 blocks");
         }
     }
 
