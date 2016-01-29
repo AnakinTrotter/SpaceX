@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="SpaceX:jar">
+  <artifact type="jar" build-on-make="true" name="SpaceX:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SpaceX_jar</output-path>
     <root id="archive" name="SpaceX.jar">
       <element id="module-output" name="SpaceX" />

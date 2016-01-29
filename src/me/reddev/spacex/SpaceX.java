@@ -10,6 +10,7 @@ import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  * @author Zachary Mayhew
  * @author Anakin Trotter
  */
-public class SpaceX extends JavaPlugin {
+public class SpaceX extends JavaPlugin implements Listener {
 
     /**
      * This is the item that is right clicked on the sign to start the spacecraft
@@ -34,9 +35,13 @@ public class SpaceX extends JavaPlugin {
 
     private ArrayList<Craft> crafts = new ArrayList<>();
 
+    public static final Material[] whitelistedBlocks = {
+
+    };
+
     @Override
     public void onEnable() {
-
+        getServer().getPluginManager().registerEvents(this, this);
     }
 
     @Override
@@ -63,7 +68,7 @@ public class SpaceX extends JavaPlugin {
                 if (block.getType() == Material.SIGN) {
                     Sign sign = (Sign) block;
                     if (sign.getLine(0).equalsIgnoreCase("spaceship")) {
-
+                        Craft craft = createCraft(block, p);
                         getServer().broadcastMessage(p.getDisplayName() + " has launched a spacecraft!");
                     }
                 }
@@ -71,8 +76,10 @@ public class SpaceX extends JavaPlugin {
         }
     }
 
-    public void createCraft(Block sign) {
-        //todo this is a stub
+    public Craft createCraft(Block sign, Player player) {
+        boolean isComplete;
+        while
+        return null;
     }
 
 
@@ -82,7 +89,8 @@ public class SpaceX extends JavaPlugin {
      * @param m player event
      */
     @EventHandler(priority=EventPriority.NORMAL)
-    public void onMove(PlayerMoveEvent m){
+    public void onPlayerMove(PlayerMoveEvent m){
+        m.getPlayer().sendMessage("yee");
         // Detects player height and will later move them to space world.
         if(m.getPlayer().getLocation().getY()>=250.0d) {
             m.getPlayer().sendMessage("You are above or at 250 blocks!");
