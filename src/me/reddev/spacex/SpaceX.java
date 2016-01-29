@@ -10,9 +10,11 @@ import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.onarandombox.MultiverseCore.*;
 
@@ -24,7 +26,7 @@ import java.util.ArrayList;
  * @author Zachary Mayhew
  * @author Anakin Trotter
  */
-public class SpaceX extends JavaPlugin {
+public class SpaceX extends JavaPlugin implements Listener{
 
     /**
      * This is the item that is right clicked on the sign to start the spacecraft
@@ -36,7 +38,7 @@ public class SpaceX extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
+        getServer().getPluginManager().registerEvents(this, this);
     }
 
     @Override
@@ -82,7 +84,7 @@ public class SpaceX extends JavaPlugin {
      * @param m player event
      */
     @EventHandler(priority=EventPriority.NORMAL)
-    public void onMove(PlayerMoveEvent m){
+    public void onPlayerMove(PlayerMoveEvent m){
         // Detects player height and will later move them to space world.
         if(m.getPlayer().getLocation().getY()>=250.0d) {
             m.getPlayer().sendMessage("You are above or at 250 blocks!");
