@@ -2,6 +2,7 @@ package me.reddev.spacex;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
@@ -68,16 +69,42 @@ public class SpaceX extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equals("spacex")) {
-            String version = this.getDescription().getVersion();
-            sender.sendMessage("Running SpaceX Version " + version);
             if (args.length > 0) {
                 if (args[0].equalsIgnoreCase("create-world")) {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mv create space end");
                 }
+                if (args[0].equalsIgnoreCase("debug")) {
+                    debugCommand((Player) sender);
+                }
+            } else {
+
+                String version = this.getDescription().getVersion();
+                sender.sendMessage("Running SpaceX Version " + version);
             }
             return true;
         }
         return false;
+    }
+
+    private void debugCommand(Player player) {
+        int x = player.getLocation().getBlockX();
+        int y = player.getLocation().getBlockY();
+        int z = player.getLocation().getBlockZ();
+        Material dm = Material.WOOL;
+        World world = player.getWorld();
+        boolean continueX = true;
+        boolean continueY = true;
+        boolean continueZ = true;
+        for (int i = 0; continueX; ) {
+            for (int j = 0; j < 10; ) {
+                for (int k = 0; j < 10; ) {
+                    world.getBlockAt(i+x, j+y, k+z).setType(dm);
+                    if (continueX) i++;
+                    if (continueY) j++;
+                    if (continueZ) k++;
+                }
+            }
+        }
     }
 
     @EventHandler(priority=EventPriority.HIGH)

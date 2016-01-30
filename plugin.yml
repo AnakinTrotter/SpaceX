@@ -5,6 +5,6 @@ author: Zachary Mayhew, Anakin Trotter
 commands:
    spacex:
       description: the main spacex command
-      usage: /spacex
+      usage: /spacex [...]
       permission: spacex.spacex
       permission-message: You don't have spacex.spacex
